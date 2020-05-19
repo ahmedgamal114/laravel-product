@@ -15,4 +15,16 @@ class client extends Model
 'phone'=>'array',
 
     ];
+
+
+    public function getNameAttribute($value){
+
+
+        return ucfirst($value);
+    }
+    public function orders(){
+
+
+        return $this->hasMany(Order::class);
+    }
 }

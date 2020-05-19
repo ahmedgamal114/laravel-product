@@ -1,7 +1,5 @@
 
-
 @extends('layouts.dashboard.app')
-
 
 @section('content')
 
@@ -9,86 +7,89 @@
 
         <section class="content-header">
 
-            <h1>Categories</h1>
+            <h1>@lang('site.dashboard')</h1>
 
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> @lang('site.dashboard')</a></li>
-                <li class="active"></li>
+                <li class="active"><i class="fa fa-dashboard"></i> @lang('site.dashboard')</li>
             </ol>
         </section>
 
         <section class="content">
 
-            <div class="box box-primary">
+            <div class="row">
 
-                <div class="box-header with-border">
+                {{-- categories--}}
+                <div class="col-lg-3 col-xs-6">
+                    <div class="small-box bg-aqua">
+                        <div class="inner">
+                            <h3>{{ $categories_count }}</h3>
 
-                    <h3 class="box-title" style="margin-bottom: 15px"><small></small></h3>
-
-                    <form method="get">
-
-                        <div class="row">
-
-                            <div class="col-md-4">
-                                <input type="text" name="search" class="form-control" placeholder="@lang('site.search')" value="{{ request()->search }}">
-                            </div>
-
-                            <div class="col-md-4">
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
-                              
-                         
-                          
-                            </div>
-
+                            <p>@lang('site.categories')</p>
                         </div>
-                    </form><!-- end of form -->
+                        <div class="icon">
+                            <i class="ion ion-bag"></i>
+                        </div>
+                        <a href="{{ route('dashboard.categories.index') }}" class="small-box-footer">@lang('site.read') <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
 
-                </div><!-- end of box header -->
+                {{--products--}}
+                <div class="col-lg-3 col-xs-6">
+                    <div class="small-box bg-green">
+                        <div class="inner">
+                            <h3>{{ $products_count }}</h3>
 
-                <div class="box-body">
+                            <p>@lang('site.products')</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-stats-bars"></i>
+                        </div>
+                        <a href="{{ route('dashboard.products.index') }}" class="small-box-footer">@lang('site.read') <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
 
-                
+                {{--clients--}}
+                <div class="col-lg-3 col-xs-6">
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <h3>{{ $clients_count }}</h3>
 
-                        <table class="table table-hover">
+                            <p>@lang('site.clients')</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-user"></i>
+                        </div>
+                        <a href="{{ route('dashboard.clients.index') }}" class="small-box-footer">@lang('site.read') <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
 
-                            <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>name</th>
-                                <th>name</th>
-                                 <th>name</th>
-                                 <th>name</th>
-                               
-                            </tr>
-                            </thead>
-                            
-                            <tbody>
-                        
-                                <tr>
-                                    <td>good</td>
-                                    <td>good</td> 
-                                     <td>good</td>  
-                                     <td>good</td>
-                                     <td>good</td>
+                {{--users--}}
+                <div class="col-lg-3 col-xs-6">
+                    <div class="small-box bg-yellow">
+                        <div class="inner">
+                            <h3>{{ $users_count }}</h3>
 
-                                   
-                                    </td>
-                                </tr>
-                            
-                        
-                            </tbody>
+                            <p>@lang('site.users')</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-users"></i>
+                        </div>
+                        <a href="{{ route('dashboard.users.index') }}" class="small-box-footer">@lang('site.read') <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
 
-                        </table><!-- end of table -->
-                        
-                   
-                        
-                        <h2></h2>
-                        
-          
-                </div><!-- end of box body -->
+            </div><!-- end of row -->
 
+            <div class="box box-solid">
 
-            </div><!-- end of box -->
+                <div class="box-header">
+                    <h3 class="box-title">Sales Graph</h3>
+                </div>
+                <div class="box-body border-radius-none">
+                    <div class="chart" id="line-chart" style="height: 250px;"></div>
+                </div>
+                <!-- /.box-body -->
+            </div>
 
         </section><!-- end of content -->
 
@@ -96,3 +97,32 @@
 
 
 @endsection
+
+@push('scripts')
+
+    <script>
+
+        //line chart
+        var line = new Morris.Line({
+            element: 'line-chart',
+            resize: true,
+            data: [
+                @foreach ($sales_data as $data)
+                {
+                    ym: "{{ $data->year }}-{{ $data->month }}", sum: "{{ $data->sum }}"
+                },
+                @endforeach
+            ],
+            xkey: 'ym',
+            ykeys: ['sum'],
+            labels: ['@lang('site.total')'],
+            lineWidth: 2,
+            hideHover: 'auto',
+            gridStrokeWidth: 0.4,
+            pointSize: 4,
+            gridTextFamily: 'Open Sans',
+            gridTextSize: 10
+        });
+    </script>
+
+@endpush

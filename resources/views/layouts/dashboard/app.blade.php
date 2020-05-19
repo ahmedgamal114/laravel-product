@@ -274,8 +274,36 @@
 <script src="{{ asset('dashboard_files/js/custom/image_preview.js') }}"></script>
 <script src="{{ asset('dashboard_files/js/custom/order.js') }}"></script>
 
+
 <script>
     $(document).ready(function () {
+
+
+
+        $('.delete').click(function (e) {
+
+var that = $(this)
+
+e.preventDefault();
+
+var n = new Noty({
+    text: "@lang('site.confirm_delete')",
+    type: "warning",
+    killer: true,
+    buttons: [
+        Noty.button("@lang('site.yes')", 'btn btn-success mr-2', function () {
+            that.closest('form').submit();
+        }),
+
+        Noty.button("@lang('site.no')", 'btn btn-primary mr-2', function () {
+            n.close();
+        })
+    ]
+});
+
+n.show();
+
+});//end of delete
 
         $('.sidebar-menu').tree();
 

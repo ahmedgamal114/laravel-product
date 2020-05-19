@@ -52,12 +52,15 @@
 </div>
 
 
-@for ($i =0; $i<2 ; $i++)
+@for($i =0 ; $i<2 ; $i++)
 <div class="form-group">
     <label>@lang('site.phone')</label>
     <input type="text" name="phone[]" class="form-control" value="{{ old('phone') }}" >
 </div>
 @endfor
+
+
+
 
 
 <div class="form-group">
@@ -89,8 +92,10 @@
                 </div><!-- end of box body -->
 
 
+
             </div><!-- end of box -->
 
+            
         </section><!-- end of content -->
 
     </div><!-- end of content wrapper -->

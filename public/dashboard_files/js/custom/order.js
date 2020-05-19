@@ -52,6 +52,14 @@ $(document).ready(function () {
         var unitPrice = parseFloat($(this).data('price').replace(/,/g, '')); //150
         console.log(unitPrice);
         $(this).closest('tr').find('.product-price').html($.number(quantity * unitPrice, 2));
+
+
+
+             //seperate with number
+
+        
+
+        
         calculateTotal();
 
     });//end of product quantity change
@@ -92,9 +100,11 @@ $(document).ready(function () {
 function calculateTotal() {
 
     var price = 0;
+   
 
     $('.order-list .product-price').each(function(index) {
         
+
         price += parseFloat($(this).html().replace(/,/g, ''));
 
     });//end of product price

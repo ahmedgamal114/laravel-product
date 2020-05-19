@@ -13,16 +13,25 @@ return [
 'add'=>'اضف',
 'edit'=>'تعديل',
 'delete'=>'حذف',
+'show'=>'عرض',
 
-
+'print'=>'طباعة',
+'loading'=>'جاري التحميل ',
+'show_products'=>'عرض المنتجات',
+'created_products'=>'تم الاضافة',
+'client_name'=>'اسم العميل',
 'no_data_found'=>'للاسف لا يوجد اي سجلات',
 
+'no_records'=>'للاسف لا يوجد اي سجلات',
 
 'users' =>'المشرفين',
 'categories'=>'الاقسام',
 'products'=>'منتجات',
 'clients'=>'عملاء',
+'orders'=>'الطبات',
+'add_orders'=>'اضف طلب',
 
+'add_order'=>'اضف طلب',
 
 'name'=>'الاسم',
 'phone'=>'التليفون',
@@ -73,9 +82,16 @@ return [
 'sale_price'=>'سعر البيع',
 'stock'=>'المخزن',
 'profit'=>'المكسب',
+'price'=>'السعر',
+
+'total'=>'العدد الكلي ',
+
+'product'=>'المنتج',
+'quantity'=>'الكمية',
 
 
 
+'name_client'=>'اسم العميل',
 
 
 

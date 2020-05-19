@@ -18,6 +18,15 @@ Route::Resource('products','ProductController')->except(['show']);
 
 Route::Resource('clients','clientController')->except(['show']);
 
+
+Route::Resource('clients.orders','client\orderController')->except(['show']);
+
+Route::Resource('orders','OrderController')->except(['show']);
+
+
+Route::get('/orders/{order}/products','OrderController@products')->name('orders.products');
+
+
 });
 });
 

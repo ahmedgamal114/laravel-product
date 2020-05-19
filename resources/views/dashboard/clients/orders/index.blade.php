@@ -75,7 +75,7 @@
                              <th>@lang('site.phone')</th>
                              <th>@lang('site.address')</th>
                          
-                             <th>@lang('site.add_orders')</th>
+                
                            <th>@lang('site.action')</th>
                                
                             </tr>
@@ -86,22 +86,8 @@
                                 <tr>
                                 <td>{{ $client->id }}</td>
                                     <td>{{ $client->name }}</td>
-
-
-                                    <td>
-                                    @if(auth()->user()->haspermission('update_clients'))
-
-<a href="{{route('dashboard.clients.orders.create', $client->id )}}" class="btn btn-info btn-sm">@lang('site.add_orders')</a>
-
-@else
-
-<a href="#" class="btn btn-info btn-sm disabled">@lang('site.add_orders')</a>
-
-
-@endif
-</td>
-
-                                    <td> {{ is_array($client->phone) ?implode(' - ',$client->phone )  : $client->phone }}
+                                
+                                    <td>{{ implode(' - ',$client->phone ) }}
 
 
                                <!-- {{$client->phone[0]}} - {{$client->phone[1]   }}
@@ -125,7 +111,7 @@
 
 
    @if(auth()->user()->haspermission('delete_clients'))
-    <form action="{{route('dashboard.clients.destroy',$client->id)}}" method="post" style="display:inline-block">
+    <form action="{{route('dashboard.orders.destroy',$client->id)}}" method="post" style="display:inline-block">
     {{ csrf_field() }}
     {{ method_field('delete') }}
     <button type="submit" class="btn btn-danger delete btn-sm"> @lang('site.delete')
