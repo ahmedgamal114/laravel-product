@@ -50,13 +50,7 @@
 
 
 @endif
-                 <li><a href="#"><i class="fa fa-th"></i><span> categories</span></a></li> 
-
-
-
-                   <li><a href="#"><i class="fa fa-th"></i><span> categories</span></a></li>  
-                    <li><a href="#"><i class="fa fa-th"></i><span> categories</span></a></li> 
-               
+           
                         
               
                           
